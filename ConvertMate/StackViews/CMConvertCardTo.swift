@@ -1,37 +1,40 @@
 //
-//  CMConvertCard.swift
+//  CMConvertCardTo.swift
 //  ConvertMate
 //
-//  Created by Richárd Hardi on 2020. 06. 05..
+//  Created by Richárd Hardi on 2020. 06. 08..
 //  Copyright © 2020. Richárd Hardi. All rights reserved.
 //
 
 import UIKit
 
-protocol CMConvertCardDelegate {
-    func selectedButtonFrom(button: String)
-    func typedValue(value: Int)
+protocol CMConvertCardToDelegate {
+    func selectedButtonTo(button: String)
 }
 
 
-class CMConvertCard: UIViewController {
+class CMConvertCardTo: UIViewController {
     
-    var delegate: CMConvertCardDelegate!
+    var delegate: CMConvertCardToDelegate!
     
     var buttons: [String]!
     var buttonsArrays: [[String]]! = []
     
-    
     var spliting: Bool!
     var cmButtonsArrays: [[CMButton]]! = []
-    var isButtonSelected = false
     
     
     var hStacks: [UIStackView]! = []
     let midVStack = UIStackView()
     
     
-    let textField = CMTextField()
+    let textLabel = CMLabel()
+    var selectedButton: String = ""
+    var buttonSelected = false
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     init(Buttons: [String], split: Bool) {
         super.init(nibName: nil, bundle: nil)
@@ -42,10 +45,11 @@ class CMConvertCard: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         configureArrays()
         configureButtons()
@@ -53,8 +57,9 @@ class CMConvertCard: UIViewController {
         configureMidVStack()
         configureView()
         dismissKeyboard()
-        configureTextField()
     }
+    
+    
     
     func configureArrays() {
         
@@ -75,8 +80,6 @@ class CMConvertCard: UIViewController {
             var tempArray: [CMButton] = []
             for button in buttonsArray {
                 let cmButton = CMButton(backgroundcolor: .systemGray, title: button)
-                cmButton.isSelected = false
-                
                 tempArray.append(cmButton)
             }
             cmButtonsArrays.append(tempArray)
@@ -89,9 +92,8 @@ class CMConvertCard: UIViewController {
         for buttonsArray in cmButtonsArrays {
             let stackView = UIStackView()
             stackView.axis = .horizontal
-            stackView.spacing = 4
             stackView.distribution = .fillProportionally
-            
+            stackView.spacing = 4
             
             for buttons in buttonsArray {
                 stackView.addArrangedSubview(buttons)
@@ -100,6 +102,7 @@ class CMConvertCard: UIViewController {
             hStacks.append(stackView)
         }
     }
+    
     
     @objc func buttonPushed(button: CMButton) {
         
@@ -115,7 +118,7 @@ class CMConvertCard: UIViewController {
             }
             button.isSelected = true
             button.backgroundColor = .systemRed
-            delegate.selectedButtonFrom(button: (button.titleLabel?.text)!)
+            delegate.selectedButtonTo(button: button.titleLabel!.text!)
         }
     }
     
@@ -126,22 +129,8 @@ class CMConvertCard: UIViewController {
     }
     
     
-    func configureTextField() {
-        textField.addTarget(self, action: #selector(didTextEditingEnd), for: .editingDidEnd)
-        
-    }
-    
-    @objc func didTextEditingEnd() {
-        
-        
-        let textFieldText = Int(textField.text!) ?? 0
-        let textFieldData = ["value": textFieldText] as [String : Any]
-        
-        delegate.typedValue(value: textFieldText)
-        NotificationCenter.default.post(name: .textFieldEdited, object: nil, userInfo: textFieldData)
-    }
-    
     func configureMidVStack() {
+        
         midVStack.axis = .vertical
         midVStack.spacing = 10
         
@@ -152,10 +141,11 @@ class CMConvertCard: UIViewController {
     
     func configureView() {
         view.addSubview(midVStack)
-        view.addSubview(textField)
+        view.addSubview(textLabel)
         
         midVStack.translatesAutoresizingMaskIntoConstraints = false
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         let height = CGFloat((hStacks.count * 35) + (hStacks.count - 1) * 5)
         
         NSLayoutConstraint.activate([
@@ -165,40 +155,41 @@ class CMConvertCard: UIViewController {
             midVStack.heightAnchor.constraint(equalToConstant: height),
             
             
-            textField.topAnchor.constraint(equalTo: midVStack.bottomAnchor, constant: 30),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -4),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 4),
-            textField.heightAnchor.constraint(equalToConstant: 50),
+            textLabel.topAnchor.constraint(equalTo: midVStack.bottomAnchor, constant: 30),
+            textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -4),
+            textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 4),
+            textLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
 
-extension CMConvertCard: VolumeVCDelegate1, WeigthVCDelegate1, LengthVCDelegate1, TemperatureVCDelegate1 {
+extension CMConvertCardTo: VolumeVCDelegate2, WeigthVCDelegate2, LengthVCDelegate2, TemperatureVCDelegate2 {
+
+    
+
     
     
+    // update second cards
     
-    
-    
-    
-    func updateFirstCardFromVolume(value: String) {
-        textField.text = value
+    func updateSecondCardFromWeight(value: String) {
+        textLabel.text = value
+    }
+
+    func updateSecondCardFromTemp(value: String) {
+        textLabel.text = value
+    }
+
+    func updateSecondCardFromVolume(value: String) {
+        textLabel.text = value
     }
     
-    func updateFirstCardFromWeight(value: String) {
-        textField.text = value
+    func updateSecondCardFromLength(value: String) {
+        textLabel.text = value
     }
     
-    func updateFirstCardFromLength(value: String) {
-        textField.text = value
-    }
+
     
-    func updateFirstCardFromTemp(value: String) {
-        textField.text = value
-    }
-    
-    
-    
-    func firstCardVolumeButtonDeselect(select: Bool) {
+    func secondCardVolumeButtonDeselect(select: Bool) {
         for buttonsArray in cmButtonsArrays {
             for buttons in buttonsArray {
                 buttons.isSelected = false
@@ -207,7 +198,8 @@ extension CMConvertCard: VolumeVCDelegate1, WeigthVCDelegate1, LengthVCDelegate1
         }
     }
     
-    func firstCardWeightButtonDeselect(select: Bool) {
+    
+    func secondCardWeightButtonDeselect(select: Bool) {
         for buttonsArray in cmButtonsArrays {
             for buttons in buttonsArray {
                 buttons.isSelected = false
@@ -216,7 +208,9 @@ extension CMConvertCard: VolumeVCDelegate1, WeigthVCDelegate1, LengthVCDelegate1
         }
     }
     
-    func firstCardLengthButtonDeselect(select: Bool) {
+    
+    
+    func secondCardLengthButtonDeselect(select: Bool) {
         for buttonsArray in cmButtonsArrays {
             for buttons in buttonsArray {
                 buttons.isSelected = false
@@ -225,7 +219,7 @@ extension CMConvertCard: VolumeVCDelegate1, WeigthVCDelegate1, LengthVCDelegate1
         }
     }
     
-    func firstCardTempButtonDeselect(select: Bool) {
+    func secondCardTempButtonDeselect(select: Bool) {
         for buttonsArray in cmButtonsArrays {
             for buttons in buttonsArray {
                 buttons.isSelected = false
@@ -234,3 +228,5 @@ extension CMConvertCard: VolumeVCDelegate1, WeigthVCDelegate1, LengthVCDelegate1
         }
     }
 }
+
+
