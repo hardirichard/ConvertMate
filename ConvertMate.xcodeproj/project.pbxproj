@@ -12,9 +12,9 @@
 		6B795882248FDDE40029FF36 /* Notification+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B795881248FDDE40029FF36 /* Notification+EXT.swift */; };
 		6B9420DA248E1FBD00638774 /* CMConvertCardTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9420D9248E1FBD00638774 /* CMConvertCardTo.swift */; };
 		6B9420DC248E200400638774 /* CMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9420DB248E200400638774 /* CMLabel.swift */; };
+		6B9CA2562535FDF100404266 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B9CA2552535FDF100404266 /* Assets.xcassets */; };
 		6BE68CFA248A36E900FC8F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE68CF9248A36E900FC8F9E /* AppDelegate.swift */; };
 		6BE68CFC248A36E900FC8F9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE68CFB248A36E900FC8F9E /* SceneDelegate.swift */; };
-		6BE68D03248A36EB00FC8F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BE68D02248A36EB00FC8F9E /* Assets.xcassets */; };
 		6BE68D06248A36EB00FC8F9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE68D04248A36EB00FC8F9E /* LaunchScreen.storyboard */; };
 		6BE68D18248A3AD000FC8F9E /* VolumeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE68D17248A3AD000FC8F9E /* VolumeVC.swift */; };
 		6BE68D1A248A3AE000FC8F9E /* WeightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE68D19248A3AE000FC8F9E /* WeightVC.swift */; };
@@ -32,10 +32,10 @@
 		6B795881248FDDE40029FF36 /* Notification+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+EXT.swift"; sourceTree = "<group>"; };
 		6B9420D9248E1FBD00638774 /* CMConvertCardTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMConvertCardTo.swift; sourceTree = "<group>"; };
 		6B9420DB248E200400638774 /* CMLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLabel.swift; sourceTree = "<group>"; };
+		6B9CA2552535FDF100404266 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BE68CF6248A36E900FC8F9E /* ConvertMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConvertMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE68CF9248A36E900FC8F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BE68CFB248A36E900FC8F9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6BE68D02248A36EB00FC8F9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BE68D05248A36EB00FC8F9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6BE68D07248A36EB00FC8F9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BE68D17248A3AD000FC8F9E /* VolumeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeVC.swift; sourceTree = "<group>"; };
@@ -104,9 +104,9 @@
 				6BE68D29248A8F6E00FC8F9E /* Screens */,
 				6BE68CF9248A36E900FC8F9E /* AppDelegate.swift */,
 				6BE68CFB248A36E900FC8F9E /* SceneDelegate.swift */,
-				6BE68D02248A36EB00FC8F9E /* Assets.xcassets */,
 				6BE68D04248A36EB00FC8F9E /* LaunchScreen.storyboard */,
 				6BE68D07248A36EB00FC8F9E /* Info.plist */,
+				6B9CA2552535FDF100404266 /* Assets.xcassets */,
 			);
 			path = ConvertMate;
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Richárd Hardi";
 				TargetAttributes = {
 					6BE68CF5248A36E900FC8F9E = {
@@ -214,8 +214,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B9CA2562535FDF100404266 /* Assets.xcassets in Resources */,
 				6BE68D06248A36EB00FC8F9E /* LaunchScreen.storyboard in Resources */,
-				6BE68D03248A36EB00FC8F9E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +284,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -308,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -344,6 +345,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -362,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

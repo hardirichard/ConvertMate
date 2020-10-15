@@ -117,7 +117,7 @@ class CMConvertCardTo: UIViewController {
                 }
             }
             button.isSelected = true
-            button.backgroundColor = .systemRed
+            button.backgroundColor = .systemOrange
             delegate.selectedButtonTo(button: button.titleLabel!.text!)
         }
     }

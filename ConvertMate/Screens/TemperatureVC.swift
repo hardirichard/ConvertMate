@@ -31,6 +31,7 @@ class TemperatureVC: UIViewController {
     
     let firstCard = UIView()
     let secondCard = UIView()
+    let backgroundImage = UIImageView()
     
     
     var selectedTempFrom = ""
@@ -64,7 +65,7 @@ class TemperatureVC: UIViewController {
     
     
     func configureNavigationController() {
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -84,19 +85,30 @@ class TemperatureVC: UIViewController {
     
     
     func configureView() {
+        view.addSubview(backgroundImage)
         view.addSubview(firstCard)
         view.addSubview(secondCard)
+        
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImage.image = UIImage(named: "flame2")
+        backgroundImage.contentMode = .scaleAspectFill
         
         firstCard.translatesAutoresizingMaskIntoConstraints = false
         secondCard.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            firstCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
+            
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 360),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            firstCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 140),
             firstCard.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             firstCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             firstCard.heightAnchor.constraint(equalToConstant: 155),
             
-            secondCard.topAnchor.constraint(equalTo: firstCard.bottomAnchor, constant: 120),
+            secondCard.topAnchor.constraint(equalTo: firstCard.bottomAnchor, constant: 90),
             secondCard.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             secondCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             secondCard.heightAnchor.constraint(equalToConstant: 155)
